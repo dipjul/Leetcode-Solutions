@@ -16,10 +16,10 @@ class Solution {
 
         while(even != null && even.next != null) {
             // for odd nodes
-            // that node should point to (next of next node)
+            // that node should point to (next(even node) of the next node(odd node))
             odd.next = odd.next.next;
-            //update the odd pointer to point to the new next node
-            odd = odd.next; // otherwise odd list will be stuck here
+            //update the next of the odd pointer to point to the new next(odd) node
+            odd = odd.next; // update the odd pinter to its next node, otherwise odd list will be stuck here
             
             //same as odd nodes
             even.next = even.next.next;
