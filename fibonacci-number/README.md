@@ -1,3 +1,4 @@
+[Discussion Post (created on 27/6/2021 at 9:22)](https://leetcode.com/problems/fibonacci-number/discuss/1365258/Java-Solution-O(1)-time-O(1)-space-100)  
 <h2>509. Fibonacci Number</h2><h3>Easy</h3><hr><div><p>The <b>Fibonacci numbers</b>, commonly denoted <code>F(n)</code> form a sequence, called the <b>Fibonacci sequence</b>, such that each number is the sum of the two preceding ones, starting from <code>0</code> and <code>1</code>. That is,</p>
 
 <pre>F(0) = 0, F(1) = 1
