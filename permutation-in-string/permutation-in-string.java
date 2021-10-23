@@ -1,26 +1,30 @@
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
-        for(int i = s1.length()-1, j = 0; i < s2.length(); i++, j++) {
-            String s = s2.substring(j, i+1);
-            if(isPermutation(s1, s))
+        Map<Character, Integer> freqCountMap = new HashMap();
+        int wS = 0, matched = 0;
+        
+        for(char ch:s1.toCharArray())
+            freqCountMap.put(ch, freqCountMap.getOrDefault(ch, 0)+1);
+        
+        for(int wE = 0; wE < s2.length(); wE++) {
+            char right = s2.charAt(wE);
+            if(freqCountMap.containsKey(right)) {
+                freqCountMap.put(right, freqCountMap.get(right)-1);
+                if(freqCountMap.get(right) == 0)
+                    matched++;
+            }
+            if(freqCountMap.size() == matched)
                 return true;
+            if(wE >= s1.length()-1) {
+                char left = s2.charAt(wS);
+                if(freqCountMap.containsKey(left)) {
+                    if(freqCountMap.get(left) == 0)
+                        matched--;
+                    freqCountMap.put(left, freqCountMap.get(left)+1);
+                }
+                wS++;
+            }
         }
         return false;
     }
-    
-    private boolean isPermutation(String s1, String subString) {
-      HashMap<Character, Integer> mp = new HashMap<>();
-
-      for(char c:s1.toCharArray())
-        mp.put(c, mp.getOrDefault(c, 0)+1);
-    
-        for(char c:subString.toCharArray()) {
-            if(!mp.containsKey(c))
-                return false;
-            mp.put(c, mp.get(c)-1);
-            if(mp.get(c) == 0)
-                mp.remove(c);
-        }
-        return mp.size() == 0;
-  }
 }
