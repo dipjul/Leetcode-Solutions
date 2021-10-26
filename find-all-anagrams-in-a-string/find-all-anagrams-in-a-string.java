@@ -1,36 +1,38 @@
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-        List<Integer> result = new ArrayList<>();
-        Map<Character, Integer> pmap = new HashMap<>();
-        Map<Character, Integer> smap = new HashMap<>();
-        if (s.length() == 0 || p.length() == 0 || s.length() < p.length()) {
-            return result;
-        }
-        int start = 0;
-        for(int i=0;i<p.length();i++) {
-            char ch = p.charAt(i);
-            pmap.put(ch, pmap.getOrDefault(ch, 0) + 1);
-        }
-        for(int i=0;i<p.length();i++) {
-            char ch = s.charAt(i);
-            smap.put(ch, smap.getOrDefault(ch, 0) + 1);
-        }
+        int windowStart = 0, matched = 0;
         
-        for(int i=p.length();i<s.length();i++) {
-            if(smap.equals(pmap)){
-                result.add(start);
-            } 
-            char cha = s.charAt(i);
-            smap.put(cha, smap.getOrDefault(cha,0)+1);
-            char chr = s.charAt(start);
-            if(smap.get(chr) == 1)
-                smap.remove(chr);
-            else
-                smap.put(chr, smap.get(chr)-1);
-            start++;  
+        List<Integer> result = new ArrayList();
+        Map<Character, Integer> charFreqMap = new HashMap();
+        
+        for(char c:p.toCharArray())
+            charFreqMap.put(c, charFreqMap.getOrDefault(c,0)+1);
+        
+        for(int windowEnd = 0; windowEnd < s.length(); windowEnd++) {
+            char right = s.charAt(windowEnd);
+            
+            if(charFreqMap.containsKey(right)) {
+                charFreqMap.put(right, charFreqMap.get(right)-1);
+                if(charFreqMap.get(right) == 0)
+                    matched++;
+            }
+            
+            if(matched == charFreqMap.size()) {
+                result.add(windowStart);
+            }
+            
+            if(windowEnd >= p.length()-1) {
+                char left = s.charAt(windowStart);
+                
+                if(charFreqMap.containsKey(left)) {
+                    if(charFreqMap.get(left) == 0)
+                        matched--;
+                    charFreqMap.put(left, charFreqMap.get(left)+1);
+                    
+                }
+                windowStart++;
+            }
         }
-        if(smap.equals(pmap))
-            result.add(start);
         return result;
     }
 }
