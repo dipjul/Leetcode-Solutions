@@ -1,24 +1,25 @@
 class Solution {
+    
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        ArrayList<List<Integer>> big = new ArrayList();
         Arrays.sort(nums);
-        sortSets(nums, 0, new ArrayList<Integer>(), big, true);
-        return big;
+        List<List<Integer>> result = new ArrayList();
+        List<Integer> step = new ArrayList();
+        helper(nums, 0, step, result);
+        return result;
     }
     
-    public void sortSets(int[] arr, int vInd, ArrayList<Integer> temp, ArrayList<List<Integer>> big, boolean flag) {
+    private void helper(int[] nums, int pos,List<Integer> step, List<List<Integer>> result) {
         
-        if(vInd == arr.length) {
-            big.add(new ArrayList<Integer>(temp));
-            return;
+        if(pos <= nums.length)
+            result.add(new ArrayList(step));
+        
+        for(int i = pos; i < nums.length; i++) {
+            if(i > pos && nums[i] == nums[i-1])
+                continue;
+            step.add(nums[i]);
+            helper(nums, i+1, step, result);
+            step.remove(step.size()-1);
         }
-        if(flag == false && arr[vInd]==arr[vInd-1]) {
-            sortSets(arr, vInd + 1, temp, big, false);
-        } else {
-            temp.add(arr[vInd]);
-            sortSets(arr, vInd + 1, temp, big, true); //include
-            temp.remove(temp.size() - 1);
-            sortSets(arr, vInd + 1, temp, big, false); //exclude
-        }
+        
     }
 }
