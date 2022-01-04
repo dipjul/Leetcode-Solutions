@@ -139,11 +139,11 @@ class Tree
         int sum = 0;
         if(root.left != null) sum += root.left.data;
         if(root.right != null) sum += root.right.data;
-        if(root.data != sum) return 0;
+        // if(root.data != sum) return 0;
         int leftS = isSumProperty(root.left);
-        if(leftS == 0) return 0;
+        // if(leftS == 0) return 0;
         int rightS = isSumProperty(root.right);
-        if(rightS == 0) return 0;
+        // if(rightS == 0) return 0;
         if(root.data == sum && leftS == 1 && rightS == 1) return 1;
         else return 0;
     }
