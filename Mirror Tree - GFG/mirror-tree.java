@@ -133,11 +133,10 @@ class Solution {
     }
     
     Node helper(Node node) {
-        if(node == null) return node;
-        Node left = helper(node.left);
-        Node right = helper(node.right);
-        node.left = right;
-        node.right = left;
+        if(node == null) return null;
+        Node tmp = helper(node.left);
+        node.left = helper(node.right);
+        node.right = tmp;
         return node;
     }
 }
