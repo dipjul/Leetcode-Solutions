@@ -13,6 +13,8 @@
  *     }
  * }
  */
+// Follow up
+// What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine?
 class Solution {
     public int kthSmallest(TreeNode root, int k) {
         LinkedList<TreeNode> st = new LinkedList<TreeNode>();
