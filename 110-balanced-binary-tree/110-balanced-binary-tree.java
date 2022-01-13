@@ -16,18 +16,19 @@
 class Solution {
     public boolean isBalanced(TreeNode root) {
         if(root == null) return true;
-        
-        return isBal(root) != -1;
+        return helper(root) != -1;
     }
     
-    public int isBal(TreeNode root) {
+    private int helper(TreeNode root) {
         if(root == null) return 0;
-        int lh = isBal(root.left);
-        if(lh == -1) return -1;
-        int rh = isBal(root.right);
-        if(rh == -1) return -1;
-        if(Math.abs(rh - lh) > 1) return -1;
-        else return 1 + Math.max(lh, rh);
+        int leftSub = helper(root.left);
+        if(leftSub == -1)
+            return -1;
+        int rightSub = helper(root.right);
+        if(rightSub == -1)
+            return -1;
+        if(Math.abs(leftSub - rightSub) > 1)
+            return -1;
+        return 1 + Math.max(leftSub, rightSub); 
     }
-
 }
