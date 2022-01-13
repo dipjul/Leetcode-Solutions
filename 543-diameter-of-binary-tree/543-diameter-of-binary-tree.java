@@ -14,6 +14,24 @@
  * }
  */
 class Solution {
+    int maxDiameter;
+    public int diameterOfBinaryTree(TreeNode root) {
+        if(root == null) return 0;
+        maxDiameter = 0;
+        helper(root);
+        return maxDiameter;
+    }
+    
+    public int helper(TreeNode root) {
+        if(root == null) return 0;
+        int l = helper(root.left);
+        int r = helper(root.right);
+        int h = 1 + Math.max(l, r);
+        maxDiameter = Math.max(maxDiameter, l+r);
+        return h;
+    }
+    
+    /*
     public int diameterOfBinaryTree(TreeNode root) {
         if(root == null) return 0;
         int d1 = diameterOfBinaryTree(root.left);
@@ -26,4 +44,5 @@ class Solution {
          if(root == null) return 0;
         return 1 + Math.max(dfsHeight(root.left), dfsHeight(root.right));
     }
+    */
 }
