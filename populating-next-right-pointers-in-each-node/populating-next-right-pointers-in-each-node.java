@@ -30,18 +30,16 @@ class Solution {
         
         while(!q.isEmpty()) {
             int levelSize = q.size();
-            // Node prev = null;
-            List<Node> currLevel = new ArrayList<>(levelSize);
+            Node prev = null;
+            
             for(int i = 0; i < levelSize; i++) {
                 Node curr = q.poll();
-                currLevel.add(curr);
+                if(prev != null)
+                    prev.next = curr;
+                prev = curr;
                 
                 if(curr.left != null) q.offer(curr.left);
                 if(curr.right != null) q.offer(curr.right);
-            }
-            
-            for(int i = 1; i < levelSize; i++) {
-                currLevel.get(i-1).next = currLevel.get(i);
             }
         }
         return root;
