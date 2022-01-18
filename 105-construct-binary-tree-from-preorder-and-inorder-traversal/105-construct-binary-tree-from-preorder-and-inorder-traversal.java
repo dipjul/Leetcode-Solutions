@@ -15,23 +15,21 @@
  */
 class Solution {
     int preIndex = 0;
-    Map<Integer, Integer> mp;
+    
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        mp = new HashMap<>();
+        Map<Integer, Integer> mp = new HashMap<>();
         for(int i = 0; i < inorder.length; i++) {
             mp.put(inorder[i], i);
         }
-        return cTree(preorder, inorder, 0, inorder.length-1, mp);
+        return cTree(preorder, 0, inorder.length-1, mp);
     }
     
-    public TreeNode cTree(int[] pre, int[] in, int inStart, int inEnd, Map<Integer, Integer> mp) {
+    public TreeNode cTree(int[] pre, int inStart, int inEnd, Map<Integer, Integer> mp) {
         if(inStart > inEnd) return null;
         TreeNode root = new TreeNode(pre[preIndex++]);
-        int inIndex = inStart;
-
         
-        root.left = cTree(pre, in, inStart, mp.get(root.val)-1, mp);
-        root.right = cTree(pre, in, mp.get(root.val)+1, inEnd, mp);
+        root.left = cTree(pre, inStart, mp.get(root.val)-1, mp);
+        root.right = cTree(pre, mp.get(root.val)+1, inEnd, mp);
         return root;
     }
 }
