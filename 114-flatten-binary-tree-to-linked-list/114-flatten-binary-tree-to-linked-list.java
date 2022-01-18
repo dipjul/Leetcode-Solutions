@@ -14,6 +14,7 @@
  * }
  */
 class Solution {
+    /*
     public void flatten(TreeNode root) {
         if(root == null)
             return;
@@ -30,7 +31,7 @@ class Solution {
             curr = curr.right;
         }
     }
-    /*
+    */
     public void flatten(TreeNode root) {
         if(root == null) return;
         Stack<TreeNode> st = new Stack<>();
@@ -47,6 +48,6 @@ class Solution {
             if(curr.left != null) st.push(curr.left);
         }
     }
-    */
+    
 
 }
