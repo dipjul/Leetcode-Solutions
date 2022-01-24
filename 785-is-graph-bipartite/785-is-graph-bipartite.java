@@ -3,7 +3,7 @@ class Solution {
         int[] color = new int[graph.length];
         Arrays.fill(color, -1);
         for(int i = 0; i < graph.length; i++) {
-            if((color[i] == -1) && !bfs(i, graph, color))
+            if(color[i] == -1 && !bfs(i, graph, color))
                 return false;
         }
         return true;
