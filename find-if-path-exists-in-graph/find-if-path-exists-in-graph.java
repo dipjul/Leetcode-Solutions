@@ -15,8 +15,8 @@ class Solution {
         
         for(int i = 0; i < n; i++) {
             if(i == source && visited[i] == false) {
-                result = bfs(source, destination, adj, visited);
-                if(result) return true;
+                result = dfs(source, destination, adj, visited);
+                // if(result) return true;
             }
         }
         return result;
@@ -48,19 +48,22 @@ class Solution {
         return false;
     }
     
-    /*
+    
     private boolean dfs(int vertex, int dest, ArrayList<ArrayList<Integer>> adj, boolean[] visited) {
         visited[vertex] = true;
         if(vertex == dest) return true;
-        
+        boolean result = false;
         for(Integer it:adj.get(vertex)) {
             if(!visited[it]) {
                 if(it == dest) return true;
-                else
-                    return dfs(it, dest, adj, visited);
+                else {
+                    result = dfs(it, dest, adj, visited);
+                    if(result)
+                        return true;
+                }
             }
         }
-        return false;
+        return result;
     }
-    */
+    
 }
