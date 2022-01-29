@@ -16,7 +16,7 @@ class Solution {
         for(int i = 0; i < n; i++) {
             if(i == source && visited[i] == false) {
                 result = dfs(source, destination, adj, visited);
-                // if(result) return true;
+                if(result) return true;
             }
         }
         return result;
