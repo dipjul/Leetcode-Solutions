@@ -16,6 +16,7 @@ class Solution {
         for(int i = 0; i < n; i++) {
             if(i == source && visited[i] == false) {
                 result = bfs(source, destination, adj, visited);
+                if(result) return true;
             }
         }
         return result;
