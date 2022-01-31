@@ -17,9 +17,9 @@ class Solution {
                 if(pop[0]==m-1 && pop[1]==n-1) {
                     return ans+1;
                 }
-                for (int k=0;k<8;k++) {
-                    int nextX = directions[k][0]+pop[0];
-                    int nextY = directions[k][1]+pop[1];
+                for (int[] dir:directions) {
+                    int nextX = dir[0]+pop[0];
+                    int nextY = dir[1]+pop[1];
 
                     if(nextX>=0 && nextX<m && nextY>=0 && nextY<n && !visited[nextX][nextY] && grid[nextX][nextY]==0) {
                         q.offer(new int[]{nextX,nextY});
