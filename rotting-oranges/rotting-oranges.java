@@ -1,49 +1,41 @@
 class Solution {
     public int orangesRotting(int[][] grid) {
-        int rows = grid.length;
-        int cols = grid[0].length;
+        int m = grid.length;
+        int n = grid[0].length;
         
-        Queue<int[]> rottens = new LinkedList<>();
-        int count_fresh = 0;
-        
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; j < cols; j++) {
-                if(grid[i][j] == 2)
-                    rottens.offer(new int[] {i, j});
+        int freshCount = 0;
+        Queue<int[]> q = new LinkedList<>();
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
                 if(grid[i][j] == 1)
-                    count_fresh++;
+                    freshCount++;
+                if(grid[i][j] == 2)
+                    q.offer(new int[]{i, j});
             }
         }
         
-        if(count_fresh == 0)
-            return 0;
-        
-        int count = 0;
-        
-        int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
-        
-        while(!rottens.isEmpty()) {
-            count++;
-            int size = rottens.size();
-            
-            for(int i = 0; i < size; i++) {
-                int[] point = rottens.poll();
-            
-                for(int dir[]:dirs) {
-                    int x = point[0]+dir[0];
-                    int y = point[1]+dir[1];
-
-                    if(x < 0 || x >= rows || y < 0 || y >= cols || grid[x][y] == 0 || grid[x][y] == 2)
-                        continue;
-                    grid[x][y] = 2;
-                    rottens.offer(new int[]{x, y});
-                    count_fresh--;
+        if(freshCount == 0) return 0;
+        int directions[][] = {{-1,0}, {0, 1}, {1, 0}, {0, -1}};
+        int time = 0;
+        while(!q.isEmpty()) {
+            int levelSize = q.size();
+            for(int i = 0; i < levelSize; i++) {
+                int[] pos = q.poll();
+                int x = pos[0];
+                int y = pos[1];
+                for(int[] dir:directions) {
+                    int n_x = x + dir[0];
+                    int n_y = y + dir[1];
+                    
+                    if(n_x >= 0 && n_x < m && n_y >= 0 && n_y < n && grid[n_x][n_y] == 1) {
+                        grid[n_x][n_y] = 2;
+                        q.offer(new int[]{n_x, n_y});
+                        freshCount--;
+                    }
                 }
             }
-            
-            
+            time++;
         }
-        
-        return count_fresh == 0? count-1:-1;
+        return freshCount==0?time-1:-1;
     }
 }
