@@ -1,6 +1,7 @@
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        List<Integer> result = new ArrayList<>();
+        // List<Integer> result = new ArrayList<>();
+        int result = 0;
         
         // 1. Initialize the graph
         Map<Integer, List<Integer>> graph = new HashMap<>();
@@ -28,7 +29,7 @@ class Solution {
         // & add if any child has in-degree 0, add it to sources queue
         while(!sources.isEmpty()) {
             int vertex = sources.poll();
-            result.add(vertex);
+            result++;
             for(int child:graph.get(vertex)) {
                 inDegree.put(child, inDegree.get(child)-1);
                 if(inDegree.get(child) == 0)
@@ -37,6 +38,6 @@ class Solution {
         }
         
         // 5. If size of result equal to numCourses then return true else return false
-        return result.size() == numCourses;
+        return result == numCourses;
     }
 }
