@@ -13,6 +13,10 @@ class Solution {
         }
 
         // build the graph
+        // indegree calculation & mapping the next nodes to the prev ones
+        // start -> end1
+        // start -> end2
+        // <start:<end1, end2>>
         for(int i = 0; i < prerequisites.length; i++) {
             int start = prerequisites[i][0], end = prerequisites[i][1];
             indegree[end]++;
@@ -29,6 +33,9 @@ class Solution {
         // build the complete prerequisitesMap
         while(!q.isEmpty()) {
             int node = q.poll();
+            // for each next vertex, add the node to the prerequisitesMap of next & 
+            // add all the prerequisitesMap of the node to the next
+            // decrement the indegree, if any next with indegree 0 add it to source queue
             for(int next:adj.get(node)) {
                 prerequisitesMap.get(next).add(node);
                 prerequisitesMap.get(next).addAll(prerequisitesMap.get(node));
