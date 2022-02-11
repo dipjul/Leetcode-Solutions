@@ -12,7 +12,7 @@ class Solution {
         int n =  mountainArr.length();
         int peakElement = findPeak(mountainArr, n);
         int left = binarySearch(mountainArr, target, 0, peakElement);
-        int right = reverseBinarySearch(mountainArr, target, peakElement+1, mountainArr.length()-1);
+        int right = descBinarySearch(mountainArr, target, peakElement+1, mountainArr.length()-1);
         if(left != -1)
             return left;
         else if(right != -1)
@@ -21,6 +21,7 @@ class Solution {
         return -1;
     }
     
+	// BinarySearch on ascendingly sorted Array 
     private int binarySearch(MountainArray mountainArr, int target, int start, int end) {
         while(start <= end) {
             int mid = start + (end - start)/2;
@@ -35,7 +36,8 @@ class Solution {
         return -1;
     }
     
-    private int reverseBinarySearch(MountainArray mountainArr, int target, int start, int end) {
+	// BinarySearch on descendingly sorted Array 
+    private int descBinarySearch(MountainArray mountainArr, int target, int start, int end) {
         while(start <= end) {
             int mid = start + (end - start)/2;
             int midElement = mountainArr.get(mid);
@@ -49,11 +51,14 @@ class Solution {
         return -1;
     }
     
+	// Find the peak
     private int findPeak(MountainArray mountainArr, int n) {
         int start = 0, end = n - 1;
         
         while(start <= end) {
             int mid = start + (end - start)/2;
+			
+			// to reduce number of api calls
             int midElement = mountainArr.get(mid);
             int midElementLeft = mid-1>=0?mountainArr.get(mid-1):-1;   
             int midElementRight = mid+1<n?mountainArr.get(mid+1):-1; 
