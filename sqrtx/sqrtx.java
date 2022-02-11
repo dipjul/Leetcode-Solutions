@@ -16,3 +16,5 @@ class Solution {
         return res;
     }
 }
+
+// same as finding floor in BS, mid == x/mid not mid*mid == x (this might lead to overflow of integer)
