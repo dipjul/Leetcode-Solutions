@@ -60,7 +60,25 @@ class Solution {
         return -1;
     }
     
+      // find index of the maximum value in a bitonic array
+  public static int findPeak(MountainArray arr, int n) {
+        int start = 0, end = n - 1;
+        while (start < end) {
+          int mid = start + (end - start) / 2;
+          
+          if (arr.get(mid) > arr.get(mid + 1)) {
+            end = mid;
+          } else {
+            start = mid + 1;
+          }
+    }
+
+    // at the end of the while loop, 'start == end'
+    return start;
+  }
+    
 	// Find the peak
+    /*
     private int findPeak(MountainArray mountainArr, int n) {
         int start = 0, end = n - 1;
         
@@ -94,5 +112,5 @@ class Solution {
             }
         }
         return -1;
-    }
+    } */
 }
