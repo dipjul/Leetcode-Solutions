@@ -38,13 +38,9 @@ class Solution {
     
     private List<String> construct(char[][] cArr) {
         List<String> result = new ArrayList<>();
-        
+       
         for(int i = 0; i < cArr.length; i++) {
-            StringBuilder sb = new StringBuilder();
-            for(int j = 0; j < cArr[i].length; j++) {
-                sb.append(cArr[i][j]);
-            }
-            result.add(sb.toString());
+            result.add(new String(cArr[i]));
         }
         return result;
     }
