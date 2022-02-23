@@ -1,39 +1,42 @@
 class Solution {
     public int search(int[] nums, int target) {
-        int min = findMin(nums);
-        int left = binarySearch(0, min - 1, nums, target);
-        int right = binarySearch(min, nums.length - 1, nums, target);
-        if (left != -1)
+        int smallestNum = findMin(nums);
+        int left = binarySearch(nums, 0, smallestNum-1, target);
+        if(left != -1)
             return left;
-        if (right != -1)
+        int right = binarySearch(nums, smallestNum, nums.length-1, target);
+        if(right != -1)
             return right;
         return -1;
     }
-
-    private int findMin(int[] A) {
-        int s = 0, e = A.length - 1, n = A.length;
-        while (s <= e) {
-            int m = s + (e - s) / 2;
-            int prev = (m - 1 + n) % n, next = (m + 1) % n;
-            if (A[m] <= A[prev] && A[m] <= A[next]) {
-                return m;
-            } else if (A[e] <= A[m])
-                s = m + 1;
+    
+    private int findMin(int[] nums) {
+        int start = 0, end = nums.length-1;
+        
+        while(start <= end) {
+            int mid = start + (end-start)/2;
+            int prev = (mid+nums.length-1)%nums.length, next = (mid+1)%nums.length;
+            if(nums[mid] <= nums[prev] && nums[mid] <= nums[next])
+                return mid;
+            else if(nums[end] <= nums[mid])
+                start = mid+1;
             else
-                e = m - 1;
+                end = mid-1;
         }
         return -1;
     }
+    
+    private int binarySearch(int[] nums, int start, int end, int target) {
 
-    private int binarySearch(int s, int e, int[] A, int target) {
-        while (s <= e) {
-            int mid = s + (e - s) / 2;
-            if (A[mid] == target)
+        while(start <= end) {
+            int mid = start + (end-start)/2;
+            
+            if(nums[mid] == target)
                 return mid;
-            else if (A[mid] < target)
-                s = mid + 1;
+            else if(nums[mid] < target)
+                start = mid+1;
             else
-                e = mid - 1;
+                end = mid-1;
         }
         return -1;
     }
