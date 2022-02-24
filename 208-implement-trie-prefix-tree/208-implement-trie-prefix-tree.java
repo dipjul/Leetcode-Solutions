@@ -31,7 +31,7 @@ class Trie {
                 return false;
             curr = curr.children.get(c);
         }
-        return curr.isEnd == true;
+        return curr.isEnd;
     }
     
     public boolean startsWith(String prefix) {
