@@ -9,7 +9,7 @@ class Solution {
             int x = pq.poll();
             int y = pq.poll();
             if(x != y) {
-                pq.offer(Math.abs(x-y));
+                pq.offer(x-y);
             }
         }
         
