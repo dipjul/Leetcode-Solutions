@@ -7,13 +7,9 @@ class Solution {
         
         while(pq.size() > 1) {
             int x = pq.poll();
-            int y = 0;
-            if(pq.size() > 0)
-                y = pq.poll();
+            int y = pq.poll();
             if(x != y) {
                 pq.offer(Math.abs(x-y));
-            } else {
-                continue;
             }
         }
         
