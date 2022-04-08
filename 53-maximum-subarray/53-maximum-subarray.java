@@ -6,10 +6,11 @@ class Solution {
         int result = nums[0];
         
         for(int num : nums) {
-            total = total+num;
-            result = Math.max(result, total);
             if(total < 0)
                 total = 0;
+            total = total+num;
+            result = Math.max(result, total);
+            
         }
         
         return result;
