@@ -11,11 +11,8 @@ class Solution {
                 mp.put(r, new ArrayList<String>());
             mp.get(r).add(str);
         }
-        for (String key : mp.keySet()) {
-            res.add(mp.get(key));
-        }
-
-        return res;
+        
+        return new ArrayList<>(mp.values());
     }
     /*
     public List<List<String>> groupAnagrams(String[] strs) {
