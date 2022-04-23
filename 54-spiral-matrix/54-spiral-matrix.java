@@ -15,7 +15,7 @@ class Solution {
             sr++;
             j = n;
             i = sr;
-            System.out.println("i: " + i + ", j: " + j + ",sr: " + sr + ",sc: " + sc + ", m: " + m + ", n: " + n);
+
             // TODO: condition
             if (i > m || j > n) {
                 break;
@@ -28,7 +28,7 @@ class Solution {
             n--;
             i = m;
             j = n;
-            System.out.println("i: " + i + ", j: " + j + ",sr: " + sr + ",sc: " + sc + ", m: " + m + ", n: " + n);
+
             if (i > m || j > n) {
                 break;
             }
@@ -41,7 +41,7 @@ class Solution {
             m--;
             j = sc;
             i = m;
-            System.out.println("i: " + i + ", j: " + j + ",sr: " + sr + ",sc: " + sc + ", m: " + m + ", n: " + n);
+
             if (i > m || j > n) {
                 break;
             }
@@ -53,7 +53,7 @@ class Solution {
             sc++;
             i = sr;
             j = sc;
-            System.out.println("i: " + i + ", j: " + j + ",sr: " + sr + ",sc: " + sc + ", m: " + m + ", n: " + n);
+
             if (i > m || j > n) {
                 break;
             }
