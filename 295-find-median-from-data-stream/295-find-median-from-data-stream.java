@@ -10,16 +10,16 @@ class MedianFinder {
     public void addNum(int num) {
         
         if(!smallList.isEmpty() && smallList.peek() <= num)
-            largeList.offer(num);
+            largeList.add(num);
         else
-            smallList.offer(num);
+            smallList.add(num);
         // size balance
         if(smallList.size() > largeList.size()+1) {
-            int tmp = smallList.poll();
-            largeList.offer(tmp);
+            int tmp = smallList.remove();
+            largeList.add(tmp);
         } else if(smallList.size() < largeList.size()) {
-            int tmp = largeList.poll();
-            smallList.offer(tmp);
+            int tmp = largeList.remove();
+            smallList.add(tmp);
         }
         size++;
     }
