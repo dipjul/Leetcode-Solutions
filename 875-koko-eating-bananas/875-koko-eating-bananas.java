@@ -11,7 +11,8 @@ class Solution {
         while(left <= right) {
             int mid = left + (right-left)/2;
             if(isSatisfy(piles, mid, h)) {
-                result = Math.min(result, mid);
+                if(mid < result)
+                    result = mid;
                 right = mid-1;
             } else {
                 left = mid+1;
