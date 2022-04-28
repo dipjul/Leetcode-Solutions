@@ -3,14 +3,16 @@ class Solution {
         int n = nums.length;
         if(n == 1)
             return nums[0];
-        
-        nums[1] = Math.max(nums[0], nums[1]);
+        int prev2 = nums[0];
+        int prev1 = Math.max(nums[0], nums[1]);
         
         for(int i = 2; i < n; i++) {
-            nums[i] = Math.max(nums[i-1], nums[i]+nums[i-2]);
+            int temp = prev1;
+            prev1 = Math.max(prev1, nums[i]+prev2);
+            prev2 = temp;
         }
         
-        return nums[n-1];
+        return prev1;
     }
     
 }
