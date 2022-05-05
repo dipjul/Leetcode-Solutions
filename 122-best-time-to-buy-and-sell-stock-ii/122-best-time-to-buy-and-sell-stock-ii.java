@@ -4,11 +4,8 @@ class Solution {
         int ans = 0;
         
         for(int i = 0, j = 1; j < n; j++, i++) {
-            if(prices[j]>prices[i]) {
-                ans += prices[j]-prices[i];
-            }
+            ans += (prices[j]>prices[i]?prices[j]-prices[i]:0);
         }
-        
         return ans;
     }
 }
