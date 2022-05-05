@@ -9,7 +9,7 @@ class Solution {
             curr = 0;
             if(ch != '0') {
                 curr += prev;
-                if(i < n-1 && Integer.valueOf(s.substring(i,i+2)) <= 26)
+                if(i < n-1 && ((ch-'0' == 1) || (ch-'0' <= 2 && s.charAt(i+1)-'0' <= 6)))
                     curr += prev2;
             }
             int tmp = prev;
