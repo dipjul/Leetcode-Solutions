@@ -7,8 +7,9 @@ class Solution {
             int min = Integer.MAX_VALUE;
             for(int coin : coins) {
                 if(i >= coin) {
-                    if(min > 1+dp[i-coin] && dp[i-coin] != Integer.MAX_VALUE)
-                        min = 1 + dp[i-coin];
+                    int val = dp[i-coin];
+                    if(min > 1+val && val != Integer.MAX_VALUE)
+                        min = 1 + val;
                 }
             }
             dp[i] = min;
