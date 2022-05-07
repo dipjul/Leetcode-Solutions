@@ -8,15 +8,16 @@ class Solution {
         
         for(int i = 0; i < n; i++) {
             for(int j = 1; j <= amount; j++) {
+                int val = j-coins[i];
                 if(i > 0) {
-                    if(j-coins[i]>=0)  
-                        dp[i][j] = dp[i-1][j] + dp[i][j-coins[i]];
+                    if(val >= 0)  
+                        dp[i][j] = dp[i-1][j] + dp[i][val];
                     else
                         dp[i][j] = dp[i-1][j];     
                 }
                 else {
-                    if(j-coins[i] >= 0)
-                        dp[i][j] = dp[i][j-coins[i]];
+                    if(val >= 0)
+                        dp[i][j] = dp[i][val];
                     else
                         dp[i][j] = 0; 
                 }
