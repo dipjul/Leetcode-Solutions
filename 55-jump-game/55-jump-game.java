@@ -4,7 +4,7 @@ class Solution {
         for(int i = 0; i < n-1; i++) {
             if(ans < i)
                 return false;
-            ans = Math.max(ans, i+nums[i]);
+            ans = ans > i+nums[i]? ans : i+nums[i];
             if(ans >= n-1)
                 return true;
         }
