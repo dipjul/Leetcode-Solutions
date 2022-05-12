@@ -4,7 +4,8 @@ class Solution {
         for(int i = 0; i < n-1; i++) {
             if(ans < i)
                 return false;
-            ans = ans > i+nums[i]? ans : i+nums[i];
+            if(ans < i+nums[i])
+                ans = i+nums[i];
             if(ans >= n-1)
                 return true;
         }
