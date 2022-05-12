@@ -26,8 +26,8 @@ class WordDictionary {
 
     private boolean trivialSearch(String word, TrieNode root) {
         TrieNode curr = root;
-        if (curr == null)
-            return false;
+        // if (curr == null)
+        //     return false;
         if (word.length() == 0)
             return curr.end;
         boolean ans = false;
