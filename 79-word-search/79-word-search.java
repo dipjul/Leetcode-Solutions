@@ -19,10 +19,9 @@ class Solution {
             res[0] = true;
             return;
         }
-        if (i >= board.length || j >= board[0].length || i < 0 || j < 0 || mark[i][j])
+        if (i >= board.length || j >= board[0].length || i < 0 || j < 0 || mark[i][j] || word.charAt(0) != board[i][j])
             return;
 
-        if (word.charAt(0) == board[i][j]) {
             mark[i][j] = true;
             if (i >= 0) {
                 backtrack(board, word.substring(1), mark, i - 1, j, res);
@@ -37,6 +36,5 @@ class Solution {
                 backtrack(board, word.substring(1), mark, i, j + 1, res);
             }
             mark[i][j] = false;
-        }
     }
 }
