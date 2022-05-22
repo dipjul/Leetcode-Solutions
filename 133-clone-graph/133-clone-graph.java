@@ -19,57 +19,40 @@ class Node {
 */
 
 class Solution {
+
     public Node cloneGraph(Node node) {
-        if(node == null)
-            return null;
+        if (node == null) return null;
         Map<Integer, Node> mp = new HashMap<>();
         Queue<Node> q = new LinkedList<>();
         Set<Node> set = new HashSet<>();
         q.offer(node);
-        
-        while(!q.isEmpty()) {
+
+        while (!q.isEmpty()) {
             Node curr = q.poll();
             set.add(curr);
-            if(!mp.containsKey(curr.val)) {
-                
-                List<Node> nei = curr.neighbors;
-                ArrayList<Node> newNei = new ArrayList<>();
-                for(Node n: nei) {
-                    if(!set.contains(n))
-                        q.offer(n);
-                    if(!mp.containsKey(n.val)) {
-                        Node newN = new Node(n.val);
-                        mp.put(newN.val, newN);
-                        newNei.add(newN);
-                    } else {
-                        Node newN = mp.get(n.val);
-                        newNei.add(newN);
-                    }
-                    
+
+            List<Node> nei = curr.neighbors;
+            ArrayList<Node> newNei = new ArrayList<>();
+            for (Node n : nei) {
+                if (!set.contains(n)) q.offer(n);
+                if (!mp.containsKey(n.val)) {
+                    Node newN = new Node(n.val);
+                    mp.put(newN.val, newN);
+                    newNei.add(newN);
+                } else {
+                    Node newN = mp.get(n.val);
+                    newNei.add(newN);
                 }
+            }
+            if (!mp.containsKey(curr.val)) {
                 Node newNode = new Node(curr.val, newNei);
                 mp.put(curr.val, newNode);
-            } else {
-                List<Node> nei = curr.neighbors;
-                ArrayList<Node> newNei = new ArrayList<>();
-                for(Node n: nei) {
-                    if(!set.contains(n))
-                        q.offer(n);
-                    if(!mp.containsKey(n.val)) {
-                        Node newN = new Node(n.val);
-                        mp.put(newN.val, newN);
-                        newNei.add(newN);
-                    } else {
-                        Node newN = mp.get(n.val);
-                        newNei.add(newN);
-                    }
-                }
-                Node newNode = mp.get(curr.val);
-                newNode.neighbors = newNei;
-                mp.put(curr.val, newNode);
             }
+            Node newNode = mp.get(curr.val);
+            newNode.neighbors = newNei;
+            mp.put(curr.val, newNode);
         }
-        
+
         return mp.get(node.val);
     }
 }
