@@ -47,10 +47,11 @@ class Solution {
             if (!mp.containsKey(curr.val)) {
                 Node newNode = new Node(curr.val, newNei);
                 mp.put(curr.val, newNode);
+            } else {
+                Node newNode = mp.get(curr.val);
+                newNode.neighbors = newNei;
+                mp.put(curr.val, newNode);
             }
-            Node newNode = mp.get(curr.val);
-            newNode.neighbors = newNei;
-            mp.put(curr.val, newNode);
         }
 
         return mp.get(node.val);
