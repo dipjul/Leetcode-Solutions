@@ -17,13 +17,11 @@ class Solution {
                 }
             }
         }
+        
         if (!graph.containsKey(endWord)) return 0;
 
         Queue<String> q = new LinkedList<>();
-//        for (int i = 0; i < wordList.size(); i++) {
-//            if (differByOne(wordList.get(i), beginWord))
-//                q.offer(wordList.get(i));
-//        }
+
         q.offer(beginWord);
 
         if (q.size() == 0) return 0;
@@ -35,14 +33,11 @@ class Solution {
             for (int i = 0; i < size; i++) {
                 String s1 = q.poll();
                 visited.add(s1);
-                if (s1.equals(endWord))
-                    return pathSize;
+                if (s1.equals(endWord)) return pathSize;
                 for (String s : graph.get(s1)) {
-                    if (!visited.contains(s))
-                        q.offer(s);
+                    if (!visited.contains(s)) q.offer(s);
                 }
             }
-
         }
 
         return 0;
@@ -55,8 +50,7 @@ class Solution {
         for (int i = 0; i < n; i++) {
             if (word1.charAt(i) != word2.charAt(i)) {
                 count++;
-                if (count > 1)
-                    return false;
+                if (count > 1) return false;
             }
         }
         return count == 1;
