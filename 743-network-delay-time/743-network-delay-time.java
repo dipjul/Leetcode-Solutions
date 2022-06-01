@@ -2,7 +2,6 @@ public class Solution {
 
     public int networkDelayTime(int[][] times, int n, int k) {
         Map<Integer, List<int[]>> graph = new HashMap<>();
-        // Set<Integer> visited = new HashSet<>();
         for (int[] time : times) {
             List<int[]> neighbours = graph.getOrDefault(time[0], new ArrayList<>());
             neighbours.add(new int[] { time[1], time[2] });
@@ -18,7 +17,7 @@ public class Solution {
             if (!graph.containsKey(vertex)) continue;
 
             List<int[]> neighbours = graph.get(vertex);
-            Collections.sort(neighbours, (a, b) -> a[1] - b[1]);
+            // Collections.sort(neighbours, (a, b) -> a[1] - b[1]);
             for (int[] nei : neighbours) {
                 int newCost = cost[vertex] + nei[1];
                 if (newCost < cost[nei[0]]) {
