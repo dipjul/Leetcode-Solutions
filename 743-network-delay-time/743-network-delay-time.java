@@ -17,7 +17,6 @@ public class Solution {
             if (!graph.containsKey(vertex)) continue;
 
             List<int[]> neighbours = graph.get(vertex);
-            // Collections.sort(neighbours, (a, b) -> a[1] - b[1]);
             for (int[] nei : neighbours) {
                 int newCost = cost[vertex] + nei[1];
                 if (newCost < cost[nei[0]]) {
