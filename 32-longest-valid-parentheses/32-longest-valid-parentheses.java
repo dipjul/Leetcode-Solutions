@@ -21,7 +21,7 @@ class Solution {
                 right++;
             }
             if (left == right) {
-                maxlength = Math.max(maxlength, 2 * left);
+                maxlength = Math.max(maxlength, 2 * right);
             } else if (left >= right) {
                 left = right = 0;
             }
