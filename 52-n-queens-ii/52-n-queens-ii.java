@@ -4,7 +4,7 @@ class Solution {
 
     public int totalNQueens(int n) {
         row = new int[n];
-        rw = new boolean[2 * n - 1];
+        rw = new boolean[n];
         ld = new boolean[2 * n - 1];
         rd = new boolean[2 * n - 1];
         int[] res = { 0 };
